@@ -1,0 +1,97 @@
+body{
+    background-color: rgba(125, 192, 192, 0.432);
+}
+
+
+.logo{
+    float: left;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+}
+
+
+
+.book1{
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid rgb(211, 121, 121);
+    border-radius: 4px;
+    background-color: rgb(161, 155, 177);
+}
+
+.list{
+    text-align: center;
+    
+    
+}
+
+
+
+
+
+.d{
+    margin: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    background-color: rgb(37, 5, 40);
+    padding: 10px;
+    
+
+}
+
+h3{
+    margin-left: 30px;
+    margin-top: -5px;
+}
+
+
+
+
+
+
+
+.box1{
+    border: 5px solid black;
+    border-radius: 10px;
+    margin: 60px;
+    width: 30%;
+    float: left;
+    vertical-align: middle;
+}
+
+.pagination{
+    color: red;
+}
+
+
+
+
+ 
+
+
+
+
+.zoom{
+    padding: 50px;
+    background-color: green;
+    transition-delay: .5s;
+    width: 300px;
+    height: 300px;
+    
+}
+
+.d:hover:hover{
+    -ms-transform: scale((1.5));
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+
+
+
+
+
+
+    

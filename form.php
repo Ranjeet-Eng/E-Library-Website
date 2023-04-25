@@ -1,8 +1,12 @@
 <?php
 include('includes/connection.php');
 
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    header('location:login.php');
+}
+
 if (isset($_POST['submit'])) {
-    $page = $_GET['page'];
     $b_name = $_POST['b_name'];
     $a_name = $_POST['a_name'];
     $desc = $_POST['des'];

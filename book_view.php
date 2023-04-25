@@ -1,5 +1,11 @@
 <?php
 include('includes/connection.php');
+
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    header('location:login.php');
+}
+
 $editid = $_GET['editid'];
 
 $editsql = "select * from `add_books` where id = $editid ";

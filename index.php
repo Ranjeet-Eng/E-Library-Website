@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    header('location:login.php');
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +78,13 @@
 
     <?php
     include('includes/connection.php');
+    // $book_profile = $_SESSION['user_name'] = $username;
+
+    // if isset()($book_profile == true) {
+    // } else {
+    //     header('location:login.php');
+    // }
+
 
     // search 
     $limit = 3;
@@ -76,8 +93,11 @@
     } else {
         $page = 1;
     }
+
+
     $offset = ($page - 1) * $limit;
     $search = isset($_GET['search']) ? $_GET['search'] : '';
+
     $search_query = "SELECT * FROM `add_books` WHERE b_name LIKE '%$search%' OR a_name LIKE '%$search%' LIMIT {$offset},{$limit}";
 
     // Sorting
@@ -134,7 +154,7 @@
         <?php
         }
         ?>
-        <div class="container " style="padding-left:600px;">
+        <div class="container " style="padding-left:500px;">
             <?php
 
             // pagination code

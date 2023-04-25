@@ -1,18 +1,19 @@
 <?php
+include 'includes/connection.php';
 $success = 0;
 $user = 0;
 $invalid = 0;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  include 'connect.php';
-  $username = $_POST['username'];
+  include 'includes/connection.php';
+  $username = $_POST['name'];
+  $email = $_POST['email'];
   $password = $_POST['password'];
   $conpassword = $_POST['conpassword'];
 
-  $sql = "select * from `registrations` where 
-    username='$username'";
+  $query = "select * from `login` where name='$username'";
 
-  $result = mysqli_query($con, $sql);
+  $result = mysqli_query($conn, $query);
   if ($result) {
     $num = mysqli_num_rows($result);
     if ($num > 0) {
@@ -20,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $user = 1;
     } else {
       if ($password === $conpassword) {
-        $sql = "insert into `registrations` (username,password)
-            values('$username','$password')";
-        $result = mysqli_query($con, $sql);
+        $query = "INSERT INTO `login`(`name`, `email`, `password`) VALUES ('$username','$email','$password')";;
+
+        $result = mysqli_query($conn, $query);
 
 
         if ($result) {
@@ -61,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>';
   }
+
   ?>
 
   <?php
@@ -86,23 +88,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form action="sign.php" method="post">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label" required>Name</label>
-        <input type="text" class="form-control" placeholder="Enter your username" name="username">
+        <input type="text" class="form-control" placeholder="Enter your name" name="name" required>
 
       </div>
 
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label" required>Email</label>
-        <input type="email" class="form-control" placeholder="Enter your username" name="email">
+        <input type="email" class="form-control" placeholder="Enter your email" name="email" required>
 
       </div>
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label" required>Password</label>
-        <input type="password" class="form-control" placeholder="Enter your password" name="password">
+        <input type="password" class="form-control" placeholder="Enter your password" name="password" required>
       </div>
 
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label" required>Confirm Password</label>
-        <input type="password" class="form-control" placeholder="Confirm password" name="conpassword">
+        <input type="password" class="form-control" placeholder="Confirm password" name="conpassword" required>
       </div>
 
       <button type="submit" class="btn btn-primary w-100">Sign up</button>

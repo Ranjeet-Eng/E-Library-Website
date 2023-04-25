@@ -1,5 +1,11 @@
 <?php
 include('includes/connection.php');
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    header('location:login.php');
+}
+
+
 $editid = $_GET['editid'];
 
 $editsql = "select * from `add_books` where id = $editid ";
@@ -91,6 +97,7 @@ if (isset($_POST['submit'])) {
 
                 <label for="email"><strong> Old image</strong></label><br>
                 <img src="uploads/<?php echo $editdata['image']; ?>" style="height:300px;width:300px" class="form-control">
+                
                 <input type="hidden" name="oldimage" value="<?php echo $editdata['image']; ?>"><br>
 
                 <label for="exampleInputEmail1" class="form-label">Upload Image</label>

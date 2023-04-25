@@ -1,25 +1,29 @@
 <?php
+// session_start();
+
 $login = 0;
 $invalid = 0;
 
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  include 'connect.php';
-  $username = $_POST['username'];
+  include 'includes/connection.php';
+  $username = $_POST['name'];
+  // $email = $_POST['email'];
   $password = $_POST['password'];
 
-  $sql = "Select * from `registrations` where 
-        username='$username' and password='$password'";
+  $sql = "Select * from `login` where 
+  name='$username' and password='$password'";
 
-  $result = mysqli_query($con, $sql);
+  $result = mysqli_query($conn, $sql);
   if ($result) {
     $num = mysqli_num_rows($result);
     if ($num > 0) {
       // echo "Login Successfull";
       $login = 1;
+
       session_start();
-      $_SESSION['username'] = $username;
+      $_SESSION['user_name'] = $username;
       header('location:index.php');
     } else {
       // echo "Invalid data";
@@ -69,15 +73,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form action="login.php" method="post">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label" required>Name</label>
-        <input type="text" class="form-control" placeholder="Enter your username" name="username">
+        <input type="text" class="form-control" placeholder="Enter your username" name="name" required>
 
       </div>
+      <!-- <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label" required>Email</label>
+        <input type="email" class="form-control" placeholder="Enter your username" name="email" required>
+
+      </div> -->
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label" required>Password</label>
-        <input type="password" class="form-control" placeholder="Enter your password" name="password">
+        <input type="password" class="form-control" placeholder="Enter your password" name="password" required>
       </div>
 
-      <button type="submit" class="btn btn-primary w-100">Login</button><br>
+      <button type="login" class="btn btn-primary w-100">Login</button><br>
       <p>not register yet? <a href="sign.php">Registerd here</a> </p>
 
     </form>
